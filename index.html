@@ -49,6 +49,7 @@
 
         #result {
             color: #333;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -67,29 +68,21 @@
         function translateCode(direction) {
             var inputCode = document.getElementById("codeInput").value;
             var translationDictForward = {
-                'q': 'a', 'a': 'z', 'z': 'q',
-                'W': 's', 'S': 'X', 'x': 'w',
-                'e': 'd', 'd': 'c', 'c': 'e',
-                'r': 'f', 'f': 'v', 'V': 'r',
-                't': 'g', 'G': 'B', 'b': 't',
-                'y': 'h', 'Y': 'N', 'h': 'n', 'n': 'y',
-                'u': 'j', 'J': 'M', 'j': 'm', 'm': 'u',
-                'i': 'k', 'k': 'i',
-                'o': 'l', 'l': 'o',
-                'p': 'P'
+                'a': 'z', 'b': 't', 'c': 'e', 'd': 'c', 'e': 'd',
+                'f': 'v', 'g': 'b', 'h': 'n', 'i': 'k', 'j': 'm',
+                'k': 'i', 'l': 'o', 'm': 'u', 'n': 'y', 'o': 'l',
+                'p': 'p', 'q': 'a', 'r': 'f', 's': 'x', 't': 'g',
+                'u': 'j', 'v': 'r', 'w': 's', 'x': 'w', 'y': 'h',
+                'z': 'q'
             };
 
             var translationDictReverse = {
-                'a': 'q', 'z': 'a', 'q': 'z',
-                's': 'W', 'X': 'S', 'w': 'x',
-                'e': 'd', 'd': 'c', 'c': 'e',
-                'r': 'f', 'f': 'v', 'V': 'r',
-                't': 'g', 'G': 'B', 'b': 't',
-                'y': 'n', 'N': 'Y', 'h': 'n', 'n': 'y',
-                'u': 'j', 'J': 'M', 'j': 'm', 'm': 'u',
-                'i': 'k', 'k': 'i',
-                'o': 'l', 'l': 'o',
-                'P': 'p'
+                'z': 'a', 't': 'b', 'e': 'c', 'c': 'd', 'd': 'e',
+                'v': 'f', 'b': 'g', 'n': 'h', 'k': 'i', 'm': 'j',
+                'i': 'k', 'o': 'l', 'u': 'm', 'y': 'n', 'l': 'o',
+                'p': 'p', 'a': 'q', 'f': 'r', 'x': 's', 'g': 't',
+                'j': 'u', 'r': 'v', 's': 'w', 'w': 'x', 'h': 'y',
+                'q': 'z'
             };
 
             var translationDict = (direction === 'forward') ? translationDictForward : translationDictReverse;

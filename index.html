@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Translator</title>
+</head>
+<body>
+    <h1>Code Translator</h1>
+    
+    <label for="codeInput">Enter Code:</label>
+    <input type="text" id="codeInput" placeholder="Type code here...">
+
+    <button onclick="translateCode('forward')">Translate Forward</button>
+    <button onclick="translateCode('reverse')">Translate Reverse</button>
+
+    <p id="result"></p>
+
+    <script>
+        function translateCode(direction) {
+            var inputCode = document.getElementById("codeInput").value;
+            var translationDictForward = {
+                'q': 'a', 'a': 'z', 'z': 'q',
+                'W': 's', 'S': 'X', 'x': 'w',
+                'e': 'd', 'd': 'c', 'c': 'e',
+                'r': 'f', 'f': 'v', 'V': 'r',
+                't': 'g', 'G': 'B', 'b': 't',
+                'y': 'h', 'Y': 'N', 'h': 'n', 'n': 'y',
+                'u': 'j', 'J': 'M', 'j': 'm', 'm': 'u',
+                'i': 'k', 'k': 'i',
+                'o': 'l', 'l': 'o',
+                'p': 'P'
+            };
+
+            var translationDictReverse = {
+                'a': 'q', 'z': 'a', 'q': 'z',
+                's': 'W', 'X': 'S', 'w': 'x',
+                'e': 'd', 'd': 'c', 'c': 'e',
+                'r': 'f', 'f': 'v', 'V': 'r',
+                't': 'g', 'G': 'B', 'b': 't',
+                'y': 'n', 'N': 'Y', 'h': 'n', 'n': 'y',
+                'u': 'j', 'J': 'M', 'j': 'm', 'm': 'u',
+                'i': 'k', 'k': 'i',
+                'o': 'l', 'l': 'o',
+                'P': 'p'
+            };
+
+            var translationDict = (direction === 'forward') ? translationDictForward : translationDictReverse;
+
+            var translatedCode = Array.from(inputCode).map(char => translationDict[char.toLowerCase()] || char).join('');
+            document.getElementById("result").innerHTML = "Translated Code: " + translatedCode;
+        }
+    </script>
+</body>
+</html>

@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malango Translator</title>
+    <title>Professional Translator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Malango Translator</h1>
+    <div class="translator-container">
+        <h1>Professional Translator</h1>
         
-        <label for="codeInput">Enter Code:</label>
-        <input type="text" id="codeInput" placeholder="Type code here...">
+        <div class="input-container">
+            <label for="codeInput">Enter Code:</label>
+            <input type="text" id="codeInput" placeholder="Type code here...">
+        </div>
 
-        <button onclick="translateCode('forward')">English to Malango</button>
-        <button onclick="translateCode('reverse')">Malango to English</button>
+        <div class="button-container">
+            <button onclick="translateCode('forward')">English to Malango</button>
+            <button onclick="translateCode('reverse')">Malango to English</button>
+        </div>
 
         <p id="result"></p>
     </div>

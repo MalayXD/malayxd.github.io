@@ -14,41 +14,45 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 30px;
+    width: 400px;
+}
+
+.header {
     text-align: center;
 }
 
 h1 {
-    color: #333;
-    font-size: 2em;
+    color: #4285f4;
+    font-size: 24px;
 }
 
-.input-container {
+.input-container,
+.output-container {
     margin: 20px 0;
 }
 
 label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #555;
 }
 
-input {
-    padding: 12px;
+textarea {
+    padding: 10px;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 5px;
+    resize: none;
 }
 
 .button-container {
-    display: flex;
-    justify-content: space-around;
+    text-align: center;
 }
 
 button {
-    padding: 15px;
-    width: 48%;
-    background-color: #4caf50;
+    padding: 12px 24px;
+    background-color: #4285f4;
     color: white;
     border: none;
     border-radius: 5px;
@@ -58,11 +62,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
-}
-
-#result {
-    color: #333;
-    margin-top: 20px;
-    font-size: 18px;
+    background-color: #3367d6;
 }

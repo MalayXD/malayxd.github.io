@@ -3,93 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malango Translator</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        label {
-            margin-top: 10px;
-            color: #555;
-        }
-
-        input {
-            padding: 8px;
-            margin: 5px 0;
-            width: 300px;
-        }
-
-        button {
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #result {
-            color: #333;
-            margin-top: 10px;
-        }
-    </style>
+    <title>My Translator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Malango Translator</h1>
-    
-    <label for="codeInput">Enter Code:</label>
-    <input type="text" id="codeInput" placeholder="Type code here...">
+    <div class="translator-container">
+        <div class="header">
+            <h1>My Translator</h1>
+        </div>
 
-    <button onclick="translateCode('forward')">English to Malango</button>
-    <button onclick="translateCode('reverse')">Malango to English</button>
+        <div class="input-container">
+            <label for="sourceText">Enter Text:</label>
+            <textarea id="sourceText" placeholder="Type text here..."></textarea>
+        </div>
 
-    <p id="result"></p>
+        <div class="button-container">
+            <button onclick="translateText()">Translate</button>
+        </div>
 
-    <script>
-        function translateCode(direction) {
-            var inputCode = document.getElementById("codeInput").value;
-            var translationDictForward = {
-                'a': 'z', 'b': 't', 'c': 'e', 'd': 'c', 'e': 'd',
-                'f': 'v', 'g': 'b', 'h': 'n', 'i': 'k', 'j': 'm',
-                'k': 'i', 'l': 'o', 'm': 'u', 'n': 'y', 'o': 'l',
-                'p': 'p', 'q': 'a', 'r': 'f', 's': 'x', 't': 'g',
-                'u': 'j', 'v': 'r', 'w': 's', 'x': 'w', 'y': 'h',
-                'z': 'q'
-            };
+        <div class="output-container">
+            <label for="translatedText">Translated Text:</label>
+            <textarea id="translatedText" readonly></textarea>
 
-            var translationDictReverse = {
-                'z': 'a', 't': 'b', 'e': 'c', 'c': 'd', 'd': 'e',
-                'v': 'f', 'b': 'g', 'n': 'h', 'k': 'i', 'm': 'j',
-                'i': 'k', 'o': 'l', 'u': 'm', 'y': 'n', 'l': 'o',
-                'p': 'p', 'a': 'q', 'f': 'r', 'x': 's', 'g': 't',
-                'j': 'u', 'r': 'v', 's': 'w', 'w': 'x', 'h': 'y',
-                'q': 'z'
-            };
+            <button onclick="copyToClipboard()">Copy to Clipboard</button>
+        </div>
+    </div>
 
-            var translationDict = (direction === 'forward') ? translationDictForward : translationDictReverse;
-
-            var translatedCode = Array.from(inputCode).map(char => translationDict[char.toLowerCase()] || char).join('');
-            document.getElementById("result").innerHTML = "Translated Code: " + translatedCode;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

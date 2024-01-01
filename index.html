@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TranslatorX</title>
+    <title>My Translator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="translator-container">
-        <h1>TranslatorX</h1>
-        
+        <div class="header">
+            <h1>My Translator</h1>
+        </div>
+
         <div class="input-container">
-            <label for="codeInput">Enter Code:</label>
-            <input type="text" id="codeInput" placeholder="Type code here...">
+            <label for="sourceText">Enter Text:</label>
+            <textarea id="sourceText" placeholder="Type text here..."></textarea>
         </div>
 
         <div class="button-container">
-            <button onclick="translateCode('forward')">Translate to Malango</button>
-            <button onclick="translateCode('reverse')">Translate to English</button>
+            <button onclick="translateText()">Translate</button>
         </div>
 
-        <p id="result"></p>
+        <div class="output-container">
+            <label for="translatedText">Translated Text:</label>
+            <textarea id="translatedText" readonly></textarea>
+        </div>
     </div>
 
     <script src="script.js"></script>

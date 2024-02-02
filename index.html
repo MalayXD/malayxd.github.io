@@ -1,161 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malango Translator</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Doujin Page</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #0c0c0c;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
 
-        h1 {
-            color: #333;
-        }
+    h1 {
+      color: #dfdfdf;
+    }
 
-        label {
-            margin-top: 10px;
-            color: #555;
-        }
+    button {
+      padding: 10px;
+      background-color: #c80000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
 
-        input {
-            padding: 8px;
-            margin: 5px 0;
-            width: 300px;
-        }
+    button:hover {
+      background-color: #4e0000;
+    }
 
-        button {
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    #random-image {
+      margin-top: 20px;
+      max-width: 80%;
+      display: none;
+    }
+    
+    #original-page-link { color: red; font-size: 18px; }
+  </style>
+  <script>
+    function generateRandomNumber(max) {
+      return Math.floor(Math.random() * max) + 1;
+    }
 
-        button:hover {
-            background-color: #45a049;
-        }
+    function generateRandomImage() {
+      var folderId = generateRandomNumber(104524);
+      var picNumber = generateRandomNumber(30);
+      var imageUrl = "https://i.9hentai.to/images/" + folderId + "/" + picNumber + ".jpg";
+      var originalPageLink = "https://9hentai.to/g/" + folderId;
 
-        #result {
-            color: #333;
-            margin-top: 10px;
-        }
-    </style>
+      document.getElementById('random-image').src = imageUrl;
+      document.getElementById('random-image').style.display = 'block';
+
+      
+      var originalPageLinkElement = document.getElementById('original-page-link');
+      originalPageLinkElement.innerText = "saucepage";
+      originalPageLinkElement.href = originalPageLink;
+    }
+    </script>
 </head>
 <body>
-    <h1>Malango Translator</h1>
-    
-    <label for="codeInput">Enter Code:</label>
-    <input type="text" id="codeInput" placeholder="Type code here...">
 
-    <button onclick="translateCode('forward')">English to Malango</button>
-    <button onclick="translateCode('reverse')">Malango to English</button>
+ <center> <h1>Random Doujin Page</h1>
 
-    <p id="result"></p>
+<div id="random-image-container">
+    <img id="random-image" alt="RandomDoujin">
+     <p id="image-details"></p>
+    <a id="original-page-link" target="_blank" rel="noopener noreferrer"></a>
+  </div>
 
-    <script>
-        function translateCode(direction) {
-            var inputCode = document.getElementById("codeInput").value;
-            var translationDictForward = {
-                'a': 'z', 'b': 't', 'c': 'e', 'd': 'c', 'e': 'd',
-                'f': 'v', 'g': 'b', 'h': 'n', 'i': 'k', 'j': 'm',
-                'k': 'i', 'l': 'o', 'm': 'u', 'n': 'y', 'o': 'l',
-                'p': 'p', 'q': 'a', 'r': 'f', 's': 'x', 't': 'g',
-                'u': 'j', 'v': 'r', 'w': 's', 'x': 'w', 'y': 'h',
-                'z': 'q'
-            };
+  <button onclick="generateRandomImage()">Show Random Page</button>
 
-            var translationDictReverse = {
-                'z': 'a', 't': 'b', 'e': 'c', 'c': 'd', 'd': 'e',
-                'v': 'f', 'b': 'g', 'n': 'h', 'k': 'i', 'm': 'j',
-                'i': 'k', 'o': 'l', 'u': 'm', 'y': 'n', 'l': 'o',
-                'p': 'p', 'a': 'q', 'f': 'r', 'x': 's', 'g': 't',
-                'j': 'u', 'r': 'v', 's': 'w', 'w': 'x', 'h': 'y',
-                'q': 'z'
-            };
-
-            var translationDict = (direction === 'forward') ? translationDictForward : translationDictReverse;
-
-            var translatedCode = Array.from(inputCode).map(char => translationDict[char.toLowerCase()] || char).join('');
-            document.getElementById("result").innerHTML = "Translated Code: " + translatedCode;
-        }
-    </script>
+</center>
 </body>
 </html>
-<p id="result"></p>
-
-<button onclick="copyToClipboard()">Copy to Clipboard</button>
-
-<script>
-    function translateCode(direction) {
-        var inputCode = document.getElementById("codeInput").value;
-        var translationDictForward = {
-            'a': 'z', 'b': 't', 'c': 'e', 'd': 'c', 'e': 'd',
-            'f': 'v', 'g': 'b', 'h': 'n', 'i': 'k', 'j': 'm',
-            'k': 'i', 'l': 'o', 'm': 'u', 'n': 'y', 'o': 'l',
-            'p': 'p', 'q': 'a', 'r': 'f', 's': 'x', 't': 'g',
-            'u': 'j', 'v': 'r', 'w': 's', 'x': 'w', 'y': 'h',
-            'z': 'q'
-        };
-
-        var translationDictReverse = {
-            'z': 'a', 't': 'b', 'e': 'c', 'c': 'd', 'd': 'e',
-            'v': 'f', 'b': 'g', 'n': 'h', 'k': 'i', 'm': 'j',
-            'i': 'k', 'o': 'l', 'u': 'm', 'y': 'n', 'l': 'o',
-            'p': 'p', 'a': 'q', 'f': 'r', 'x': 's', 'g': 't',
-            'j': 'u', 'r': 'v', 's': 'w', 'w': 'x', 'h': 'y',
-            'q': 'z'
-        };
-
-        var translationDict = (direction === 'forward') ? translationDictForward : translationDictReverse;
-
-        var translatedCode = Array.from(inputCode).map(char => translationDict[char.toLowerCase()] || char).join('');
-        document.getElementById("result").innerHTML = "Translated Code: " + translatedCode;
-
-        // Store the translated code in a global variable for later use
-        window.translatedCode = translatedCode;
-    }
-
-    function copyToClipboard() {
-        var resultElement = document.getElementById("result");
-
-        // Check if there's translated code available
-        if (window.translatedCode) {
-            // Create a temporary input element
-            var tempInput = document.createElement("input");
-
-            // Set the value of the input to the translated code
-            tempInput.value = window.translatedCode;
-
-            // Append the input element to the document
-            document.body.appendChild(tempInput);
-
-            // Select the input content
-            tempInput.select();
-            tempInput.setSelectionRange(0, 99999); /*For mobile devices*/
-
-            // Copy the content to the clipboard
-            document.execCommand("copy");
-
-            // Remove the temporary input element
-            document.body.removeChild(tempInput);
-
-            // Update the result element to indicate successful copy
-            resultElement.innerHTML = "Translated Code Copied to Clipboard!";
-        } else {
-            // If there's no translated code, show an error message
-            resultElement.innerHTML = "No Translated Code to Copy!";
-        }
-    }
-</script>

@@ -146,4 +146,37 @@
             tempInput.setSelectionRange(0, 99999); /*For mobile devices*/
 
             // Copy the content to the clipboard
-            do
+
+            <button onclick="copyToClipboard()">Copy to Clipboard</button>
+
+<script>
+    function copyToClipboard() {
+        // Check if there's translated code available
+        if (window.translatedCode) {
+            // Create a temporary textarea element
+            var tempTextarea = document.createElement("textarea");
+
+            // Set the value of the textarea to the translated code
+            tempTextarea.value = window.translatedCode;
+
+            // Append the textarea element to the document
+            document.body.appendChild(tempTextarea);
+
+            // Select the textarea content
+            tempTextarea.select();
+            tempTextarea.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the content to the clipboard
+            document.execCommand("copy");
+
+            // Remove the temporary textarea
+            document.body.removeChild(tempTextarea);
+
+            // Inform the user that the code has been copied
+            alert("Translated code has been copied to the clipboard!");
+        } else {
+            // Inform the user if there's no translated code available
+            alert("No translated code available to copy!");
+        }
+    }
+</script>

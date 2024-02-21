@@ -64,6 +64,8 @@
 
     <p id="result"></p>
 
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+
     <script>
         function translateCode(direction) {
             var inputCode = document.getElementById("codeInput").value;
@@ -89,94 +91,40 @@
 
             var translatedCode = Array.from(inputCode).map(char => translationDict[char.toLowerCase()] || char).join('');
             document.getElementById("result").innerHTML = "Translated Code: " + translatedCode;
+            window.translatedCode = translatedCode; // Store the translated code in a global variable
+        }
+
+        function copyToClipboard() {
+            var resultElement = document.getElementById("result");
+
+            // Check if there's translated code available
+            if (window.translatedCode) {
+                // Create a temporary input element
+                var tempInput = document.createElement("input");
+
+                // Set the value of the input to the translated code
+                tempInput.value = window.translatedCode;
+
+                // Append the input element to the document
+                document.body.appendChild(tempInput);
+
+                // Select the input content
+                tempInput.select();
+                tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+                // Copy the content to the clipboard
+                document.execCommand("copy");
+
+                // Remove the temporary input element
+                document.body.removeChild(tempInput);
+
+                // Inform the user that the code has been copied
+                alert("Translated code has been copied to the clipboard!");
+            } else {
+                // Inform the user if there's no translated code available
+                alert("No translated code available to copy!");
+            }
         }
     </script>
 </body>
 </html>
-<p id="result"></p>
-
-<button onclick="copyToClipboard()">Copy to Clipboard</button>
-
-<script>
-    function translateCode(direction) {
-        var inputCode = document.getElementById("codeInput").value;
-        var translationDictForward = {
-            'a': 'z', 'b': 't', 'c': 'e', 'd': 'c', 'e': 'd',
-            'f': 'v', 'g': 'b', 'h': 'n', 'i': 'k', 'j': 'm',
-            'k': 'i', 'l': 'o', 'm': 'u', 'n': 'y', 'o': 'l',
-            'p': 'p', 'q': 'a', 'r': 'f', 's': 'x', 't': 'g',
-            'u': 'j', 'v': 'r', 'w': 's', 'x': 'w', 'y': 'h',
-            'z': 'q'
-        };
-
-        var translationDictReverse = {
-            'z': 'a', 't': 'b', 'e': 'c', 'c': 'd', 'd': 'e',
-            'v': 'f', 'b': 'g', 'n': 'h', 'k': 'i', 'm': 'j',
-            'i': 'k', 'o': 'l', 'u': 'm', 'y': 'n', 'l': 'o',
-            'p': 'p', 'a': 'q', 'f': 'r', 'x': 's', 'g': 't',
-            'j': 'u', 'r': 'v', 's': 'w', 'w': 'x', 'h': 'y',
-            'q': 'z'
-        };
-
-        var translationDict = (direction === 'forward') ? translationDictForward : translationDictReverse;
-
-        var translatedCode = Array.from(inputCode).map(char => translationDict[char.toLowerCase()] || char).join('');
-        document.getElementById("result").innerHTML = "Translated Code: " + translatedCode;
-
-        // Store the translated code in a global variable for later use
-        window.translatedCode = translatedCode;
-    }
-
-    function copyToClipboard() {
-        var resultElement = document.getElementById("result");
-
-        // Check if there's translated code available
-        if (window.translatedCode) {
-            // Create a temporary input element
-            var tempInput = document.createElement("input");
-
-            // Set the value of the input to the translated code
-            tempInput.value = window.translatedCode;
-
-            // Append the input element to the document
-            document.body.appendChild(tempInput);
-
-            // Select the input content
-            tempInput.select();
-            tempInput.setSelectionRange(0, 99999); /*For mobile devices*/
-
-            // Copy the content to the clipboard
-
-            <button onclick="copyToClipboard()">Copy to Clipboard</button>
-
-<script>
-    function copyToClipboard() {
-        // Check if there's translated code available
-        if (window.translatedCode) {
-            // Create a temporary textarea element
-            var tempTextarea = document.createElement("textarea");
-
-            // Set the value of the textarea to the translated code
-            tempTextarea.value = window.translatedCode;
-
-            // Append the textarea element to the document
-            document.body.appendChild(tempTextarea);
-
-            // Select the textarea content
-            tempTextarea.select();
-            tempTextarea.setSelectionRange(0, 99999); // For mobile devices
-
-            // Copy the content to the clipboard
-            document.execCommand("copy");
-
-            // Remove the temporary textarea
-            document.body.removeChild(tempTextarea);
-
-            // Inform the user that the code has been copied
-            alert("Translated code has been copied to the clipboard!");
-        } else {
-            // Inform the user if there's no translated code available
-            alert("No translated code available to copy!");
-        }
-    }
-</script>

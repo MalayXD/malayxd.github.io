@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malango Translator</title>
+    <title>Malaynguage Translator</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #ffffff;
+            background: linear-gradient(135deg, #f9f9f9 25%, #e0f7fa 100%);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -22,16 +22,24 @@
         h1 {
             margin-top: 2rem;
             color: #005A9C;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .translator-container {
             max-width: 600px;
             width: 100%;
             margin-top: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+            background-color: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .translator-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 16px rgba(0,0,0,0.3);
         }
 
         label {
@@ -39,28 +47,37 @@
             margin-top: 20px;
             color: #555;
             font-weight: 600;
+            font-size: 1.1rem;
         }
 
         input, button, #result {
             width: 100%;
-            padding: 10px 15px;
-            margin: 5px 0 20px;
+            padding: 15px 20px;
+            margin: 10px 0 20px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        input:focus, button:focus, #result:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0,123,255,0.5);
         }
 
         button {
             background-color: #007BFF;
             color: white;
-            font-size: 16px;
+            font-size: 1.1rem;
             border: none;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         button:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
         }
 
         #result {
@@ -70,17 +87,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <h1>Malango Translator</h1>
+    <h1>Malaynguage Translator</h1>
     <div class="translator-container">
         <label for="codeInput">Enter Text:</label>
         <input type="text" id="codeInput" placeholder="Type text here...">
 
-        <button onclick="translateCode('forward')">English to Malango</button>
-        <button onclick="translateCode('reverse')">Malango to English</button>
+        <button onclick="translateCode('forward')">English to Malaynguage</button>
+        <button onclick="translateCode('reverse')">Malaynguage to English</button>
 
         <div id="result">Translated text will appear here...</div>
 

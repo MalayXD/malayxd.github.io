@@ -248,4 +248,15 @@
         }
 
         // Function to change background color every 15 seconds
-        let colors = ["#f0f8ff", "#ffe4e1", "#
+        let colors = ["#f0f8ff", "#ffe4e1", "#e6e6fa", "#ffe5b4"];
+        let currentColorIndex = 0;
+
+        function changeBackgroundColor() {
+            document.body.style.backgroundColor = colors[currentColorIndex];
+            currentColorIndex = (currentColorIndex + 1) % colors.length; // Cycle through colors
+        }
+
+        setInterval(changeBackgroundColor, 15000); // Change color every 15 seconds
+    </script>
+</body>
+</html>

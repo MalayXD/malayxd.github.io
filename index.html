@@ -97,8 +97,8 @@
         <label for="codeInput">Enter Text:</label>
         <input type="text" id="codeInput" placeholder="Type text here...">
 
-        <button onclick="translateCode('forward')">English to Malaynguage</button>
-        <button onclick="translateCode('reverse')">Malaynguage to English</button>
+        <button onclick="translateCode('forward')">English to Russian</button>
+        <button onclick="translateCode('reverse')">Russian to English</button>
 
         <div id="result">Translated text will appear here...</div>
 
@@ -108,24 +108,28 @@
     <script>
         function translateCode(direction) {
             var inputCode = document.getElementById("codeInput").value;
+
+            // Random translation dictionary for English to Russian (Forward)
             var translationDictForward = {
-                'a': 'z', 'b': 't', 'c': 'e', 'd': 'c', 'e': 'd',
-                'f': 'v', 'g': 'b', 'h': 'n', 'i': 'k', 'j': 'm',
-                'k': 'i', 'l': 'o', 'm': 'u', 'n': 'y', 'o': 'l',
-                'p': 'p', 'q': 'a', 'r': 'f', 's': 'x', 't': 'g',
-                'u': 'j', 'v': 'r', 'w': 's', 'x': 'w', 'y': 'h',
-                'z': 'q'
+                'a': 'ф', 'b': 'и', 'c': 'с', 'd': 'в', 'e': 'у',
+                'f': 'а', 'g': 'п', 'h': 'р', 'i': 'ш', 'j': 'о',
+                'k': 'л', 'l': 'д', 'm': 'ь', 'n': 'т', 'o': 'щ',
+                'p': 'з', 'q': 'й', 'r': 'к', 's': 'ы', 't': 'е',
+                'u': 'г', 'v': 'м', 'w': 'ц', 'x': 'ч', 'y': 'н',
+                'z': 'я'
             };
 
+            // Reverse translation dictionary for Russian to English
             var translationDictReverse = {
-                'z': 'a', 't': 'b', 'e': 'c', 'c': 'd', 'd': 'e',
-                'v': 'f', 'b': 'g', 'n': 'h', 'k': 'i', 'm': 'j',
-                'i': 'k', 'o': 'l', 'u': 'm', 'y': 'n', 'l': 'o',
-                'p': 'p', 'a': 'q', 'f': 'r', 'x': 's', 'g': 't',
-                'j': 'u', 'r': 'v', 's': 'w', 'w': 'x', 'h': 'y',
-                'q': 'z'
+                'ф': 'a', 'и': 'b', 'с': 'c', 'в': 'd', 'у': 'e',
+                'а': 'f', 'п': 'g', 'р': 'h', 'ш': 'i', 'о': 'j',
+                'л': 'k', 'д': 'l', 'ь': 'm', 'т': 'n', 'щ': 'o',
+                'з': 'p', 'й': 'q', 'к': 'r', 'ы': 's', 'е': 't',
+                'г': 'u', 'м': 'v', 'ц': 'w', 'ч': 'x', 'н': 'y',
+                'я': 'z'
             };
 
+            // Select the appropriate translation direction
             var translationDict = (direction === 'forward') ? translationDictForward : translationDictReverse;
 
             var translatedCode = "";

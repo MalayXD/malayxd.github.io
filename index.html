@@ -6,9 +6,10 @@
     <title>Malaynguage Translator</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* Base Styles */
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #f9f9f9 25%, #e0f7fa 100%);
+            background: linear-gradient(135deg, #eceff1, #b3e5fc);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -17,29 +18,61 @@
             justify-content: flex-start;
             min-height: 100vh;
             color: #333;
+            overflow: hidden;
         }
 
         h1 {
-            margin-top: 2rem;
             color: #005A9C;
-            font-size: 2.5rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            font-size: 3rem;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+            margin-top: 2rem;
+            text-align: center;
+            letter-spacing: 1px;
         }
 
+        /* Translator Box Styles */
         .translator-container {
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
             margin-top: 20px;
-            padding: 30px;
+            padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
             background-color: #ffffff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .translator-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 16px rgba(0,0,0,0.3);
+        /* Note Style Animation */
+        .note {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100px;
+            background: linear-gradient(90deg, #f8bbd0, #c2185b);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            animation: noteAnimation 5s linear infinite;
+            z-index: 1;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        @keyframes noteAnimation {
+            0% {
+                left: -100%;
+            }
+            50% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
         }
 
         label {
@@ -47,17 +80,17 @@
             margin-top: 20px;
             color: #555;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         input, button, #result {
             width: 100%;
             padding: 15px 20px;
-            margin: 10px 0 20px;
+            margin: 15px 0;
             border: 1px solid #ddd;
             border-radius: 8px;
             box-sizing: border-box;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         input:focus, button:focus, #result:focus {
@@ -69,7 +102,8 @@
         button {
             background-color: #007BFF;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -87,49 +121,89 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            border: 2px dashed #007BFF;
+        }
+
+        /* Button Container for Better Layout */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Malaynguage Translator</h1>
+
+    <!-- Note Animation -->
+    <div class="note">DON'T SHARE THIS DECODER TO ANYONE WITHOUT MY PERMISSION</div>
+
     <div class="translator-container">
         <label for="codeInput">Enter Text:</label>
         <input type="text" id="codeInput" placeholder="Type text here...">
 
-        <button onclick="translateCode('forward')">English to Russian</button>
-        <button onclick="translateCode('reverse')">Russian to English</button>
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button onclick="translateCode('forward')">Encode (English to Malaynguage)</button>
+            <button onclick="translateCode('reverse')">Decode (Malaynguage to English)</button>
+        </div>
 
+        <!-- Result Section -->
         <div id="result">Translated text will appear here...</div>
 
+        <!-- Copy Button -->
         <button onclick="copyToClipboard()">Copy to Clipboard</button>
     </div>
 
+    <div class="footer">
+        Don't share this decoder with anyone without my permission.
+    </div>
+
     <script>
+        // Function to handle translation
         function translateCode(direction) {
             var inputCode = document.getElementById("codeInput").value;
 
-            // Random translation dictionary for English to Russian (Forward)
+            // Translation dictionary for English to random Russian letters (Forward)
             var translationDictForward = {
-                'a': 'ф', 'b': 'и', 'c': 'с', 'd': 'в', 'e': 'у',
-                'f': 'а', 'g': 'п', 'h': 'р', 'i': 'ш', 'j': 'о',
-                'k': 'л', 'l': 'д', 'm': 'ь', 'n': 'т', 'o': 'щ',
-                'p': 'з', 'q': 'й', 'r': 'к', 's': 'ы', 't': 'е',
-                'u': 'г', 'v': 'м', 'w': 'ц', 'x': 'ч', 'y': 'н',
-                'z': 'я'
+                'a': 'ж', 'b': 'и', 'c': 'ш', 'd': 'ф', 'e': 'г',
+                'f': 'х', 'g': 'й', 'h': 'щ', 'i': 'з', 'j': 'ц',
+                'k': 'в', 'l': 'л', 'm': 'м', 'n': 'р', 'o': 'к',
+                'p': 'т', 'q': 'н', 'r': 'с', 's': 'ь', 't': 'ю',
+                'u': 'э', 'v': 'ъ', 'w': 'ъ', 'x': 'я', 'y': 'о',
+                'z': 'б'
             };
 
-            // Reverse translation dictionary for Russian to English
+            // Reverse translation dictionary for random Russian letters to English
             var translationDictReverse = {
-                'ф': 'a', 'и': 'b', 'с': 'c', 'в': 'd', 'у': 'e',
-                'а': 'f', 'п': 'g', 'р': 'h', 'ш': 'i', 'о': 'j',
-                'л': 'k', 'д': 'l', 'ь': 'm', 'т': 'n', 'щ': 'o',
-                'з': 'p', 'й': 'q', 'к': 'r', 'ы': 's', 'е': 't',
-                'г': 'u', 'м': 'v', 'ц': 'w', 'ч': 'x', 'н': 'y',
-                'я': 'z'
+                'ж': 'a', 'и': 'b', 'ш': 'c', 'ф': 'd', 'г': 'e',
+                'х': 'f', 'й': 'g', 'щ': 'h', 'з': 'i', 'ц': 'j',
+                'в': 'k', 'л': 'l', 'м': 'm', 'р': 'n', 'к': 'o',
+                'т': 'p', 'н': 'q', 'с': 'r', 'ь': 's', 'ю': 't',
+                'э': 'u', 'ъ': 'v', 'ъ': 'w', 'я': 'x', 'о': 'y',
+                'б': 'z'
             };
 
-            // Select the appropriate translation direction
+            // Select the appropriate translation dictionary
             var translationDict = (direction === 'forward') ? translationDictForward : translationDictReverse;
 
             var translatedCode = "";
@@ -147,9 +221,10 @@
             }
 
             document.getElementById("result").innerHTML = "Translated Text: " + translatedCode;
-            window.translatedCode = translatedCode; // Store the translated code in a global variable
+            window.translatedCode = translatedCode; // Store the translated code globally
         }
 
+        // Function to copy to clipboard
         function copyToClipboard() {
             if (window.translatedCode) {
                 navigator.clipboard.writeText(window.translatedCode)

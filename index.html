@@ -1,185 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malaynguage Translator</title>
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youinstabook.in</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f7d794, #f8a5c2);
+      color: #333;
+      overflow: hidden;
+    }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-        }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+    }
 
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 30px;
-            width: 95%;
-            max-width: 400px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
+    .construction-tape {
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      background: repeating-linear-gradient(45deg, #ffcc00, #ffcc00 10px, #333 10px, #333 20px);
+      animation: tape-move 3s linear infinite;
+    }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
-        }
+    .construction-tape:nth-child(1) {
+      top: 0;
+    }
 
-        input, button {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            font-size: 1rem;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-        }
+    .construction-tape:nth-child(2) {
+      bottom: 0;
+    }
 
-        input {
-            background: rgba(255, 255, 255, 0.8);
-            color: #333;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .construction-tape:nth-child(3) {
+      transform: rotate(90deg);
+      height: 100%;
+      width: 20px;
+      left: 0;
+      top: 0;
+    }
 
-        button {
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
+    .construction-tape:nth-child(4) {
+      transform: rotate(90deg);
+      height: 100%;
+      width: 20px;
+      right: 0;
+      top: 0;
+    }
 
-        button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
+    @keyframes tape-move {
+      0% { background-position: 0; }
+      100% { background-position: 40px; }
+    }
 
-        #translatorContainer {
-            display: none;
-            margin-top: 20px;
-        }
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
-        #translatorContainer input, #translatorContainer button {
-            margin-top: 10px;
-        }
+    .logo .youtube {
+      color: #ff0000;
+    }
 
-        #result {
-            background: #333;
-            color: #fff;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            font-size: 1rem;
-        }
+    .logo .instagram {
+      background: linear-gradient(45deg, #ff512f, #dd2476);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.8rem;
-            }
+    .logo .facebook {
+      color: #1877f2;
+    }
 
-            input, button {
-                font-size: 0.9rem;
-                padding: 10px;
-            }
+    .logo .domain {
+      color: #444;
+      font-size: 1.2rem;
+    }
 
-            #result {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+    .description {
+      font-size: 1.2rem;
+      color: #555;
+      margin: 10px 20px;
+      max-width: 600px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #444;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .countdown {
+      font-size: 2rem;
+      margin: 20px 0;
+      color: #555;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .animation-container {
+      position: absolute;
+      bottom: 60px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      overflow: hidden;
+    }
+
+    .worker, .cone, .crane {
+      animation: move 5s linear infinite;
+    }
+
+    @keyframes move {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(120%); }
+    }
+
+    .worker {
+      height: 50px;
+    }
+
+    .cone {
+      height: 40px;
+    }
+
+    .crane {
+      height: 80px;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+      width: 100%;
+    }
+
+    .contacts {
+      font-size: 1rem;
+      color: #444;
+      margin-top: 20px;
+    }
+
+    .contacts a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    .contacts a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Malaynguage Translator</h1>
-        <div id="lockContainer">
-            <p>Enter Password to Unlock:</p>
-            <input type="password" id="passwordInput" placeholder="Enter password">
-            <button onclick="unlock()">Unlock</button>
-        </div>
-        <div id="translatorContainer">
-            <label for="codeInput">Enter Text to Translate:</label>
-            <input type="text" id="codeInput" placeholder="Type text here...">
-            <button onclick="translateCode('forward')">English to Malaynguage</button>
-            <button onclick="translateCode('reverse')">Malaynguage to English</button>
-            <div id="result">Translation will appear here...</div>
-            <button onclick="copyToClipboard()">Copy Translation</button>
-        </div>
+  <div class="construction-tape"></div>
+  <div class="construction-tape"></div>
+  <div class="construction-tape"></div>
+  <div class="construction-tape"></div>
+
+  <div class="container">
+    <div class="logo">
+      <span class="youtube">You</span>
+      <span class="instagram">Insta</span>
+      <span class="facebook">Book</span>
+      <span class="domain">.in</span>
     </div>
+    <p class="description">
+      Youinstabook.in is a website where you can download videos and photos from all major social media apps 
+      like YouTube, Facebook, Instagram, and more. Fast, easy, and free to use!
+    </p>
+    <h1>🚧 THIS WEBSITE IS UNDER CONSTRUCTION 🚧</h1>
+    <div class="countdown">Loading Countdown...</div>
+    <div class="animation-container">
+      <img src="https://img.icons8.com/ios-filled/100/construction-worker.png" alt="Worker" class="worker">
+      <img src="https://img.icons8.com/ios-filled/100/traffic-cone.png" alt="Cone" class="cone">
+      <img src="https://img.icons8.com/ios-filled/100/construction-crane.png" alt="Crane" class="crane">
+    </div>
+    <div class="contacts">
+      If you want me to add new features, contact: 
+      <a href="https://t.me/malayXD" target="_blank">t.me/malayXD</a> or 
+      <a href="https://t.me/donotcopymysername" target="_blank">t.me/donotcopymysername</a>
+    </div>
+  </div>
+  <footer>Launch Date: 1 January 2025</footer>
 
-    <script>
-        // Password for unlocking
-        const password = "62529";
+  <script>
+    const countdownElement = document.querySelector('.countdown');
 
-        function unlock() {
-            const inputPassword = document.getElementById("passwordInput").value.trim();
-            if (inputPassword === password) {
-                document.getElementById("lockContainer").style.display = "none";
-                document.getElementById("translatorContainer").style.display = "block";
-            } else {
-                alert("Incorrect password. Please try again!");
-            }
-        }
+    function updateCountdown() {
+      const now = new Date();
+      const launchDate = new Date('2025-01-01T00:00:00');
+      const timeDifference = launchDate - now;
 
-        function translateCode(direction) {
-            const inputCode = document.getElementById("codeInput").value.trim();
+      if (timeDifference < 0) {
+        countdownElement.innerHTML = "🔧 This page will be live soon!";
+        return;
+      }
 
-            if (!inputCode) {
-                alert("Please enter some text for translation.");
-                return;
-            }
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-            const translationDictForward = {
-                'a': 'ж', 'b': 'и', 'c': 'ш', 'd': 'ф', 'e': 'г',
-                'f': 'х', 'g': 'й', 'h': 'щ', 'i': 'з', 'j': 'ц',
-                'k': 'в', 'l': 'л', 'm': 'м', 'n': 'р', 'o': 'к',
-                'p': 'т', 'q': 'н', 'r': 'с', 's': 'ь', 't': 'ю',
-                'u': 'э', 'v': 'ъ', 'w': 'ч', 'x': 'я', 'y': 'о',
-                'z': 'б'
-            };
+      countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+    }
 
-            const translationDictReverse = Object.fromEntries(
-                Object.entries(translationDictForward).map(([key, value]) => [value, key])
-            );
-
-            const translationDict = (direction === 'forward') ? translationDictForward : translationDictReverse;
-
-            let translatedText = '';
-            for (let char of inputCode) {
-                const isUpperCase = char === char.toUpperCase();
-                const translatedChar = translationDict[char.toLowerCase()] || char;
-                translatedText += isUpperCase ? (translatedChar || char).toUpperCase() : translatedChar || char;
-            }
-
-            document.getElementById("result").textContent = `Translation: ${translatedText}`;
-            window.translatedText = translatedText;
-        }
-
-        function copyToClipboard() {
-            if (window.translatedText) {
-                navigator.clipboard.writeText(window.translatedText)
-                    .then(() => alert("Copied to clipboard!"))
-                    .catch(err => console.error("Error copying text: ", err));
-            } else {
-                alert("No translation to copy!");
-            }
-        }
-    </script>
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 </body>
 </html>

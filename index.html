@@ -65,16 +65,6 @@
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .countdown {
-      font-size: 2rem;
-      margin: 20px 0;
-      color: #555;
-      padding: 10px 20px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
     .gif-container {
       margin-top: 20px;
     }
@@ -127,11 +117,6 @@
         font-size: 2rem;
       }
 
-      .countdown {
-        font-size: 1.5rem;
-        padding: 8px 15px;
-      }
-
       footer {
         font-size: 0.8rem;
       }
@@ -163,41 +148,18 @@
       <img src="https://i0.wp.com/internationaleventvenue.com/wp-content/uploads/2020/09/under-construction-gif-11.gif?ssl=1" alt="Under Construction" width="500">
     </div>
 
-    <div class="countdown">Loading Countdown...</div>
-
     <div class="contacts">
       If you want me to add new features, contact: 
       <a href="https://t.me/malayXD" target="_blank">t.me/malayXD</a> or 
       <a href="https://t.me/donotcopymysername" target="_blank">t.me/donotcopymysername</a>
     </div>
+
+    <p class="description">
+      DUE TO SOME PERSONAL REASONS, THERE WILL BE A DELAY IN MAKING THIS WEBSITE LIVE.
+    </p>
   </div>
 
   <footer>Launch Date: <span class="bold">1 January 2025</span></footer>
-
-  <script>
-    const countdownElement = document.querySelector('.countdown');
-
-    function updateCountdown() {
-      const now = new Date();
-      const launchDate = new Date('2025-01-01T00:00:00');
-      const timeDifference = launchDate - now;
-
-      if (timeDifference < 0) {
-        countdownElement.innerHTML = "🔧 This page will be live soon!";
-        return;
-      }
-
-      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-      countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
 
 </body>
 </html>
